@@ -1,0 +1,32 @@
+<div class=container>
+  <div class="form-user">
+    <div class="form-header">
+      <h4 class="form-header-title">ユーザー情報</h4>
+    </div>
+    <div class="row">
+      <div class="col-md-1"></div>
+      <div class="col-md-3">
+        <%= attachment_image_tag @user, :profile_image, :fill, 200, 200, fallback: "no_image.jpg", class: "rounded-circle border" %>
+      </div>
+      <div class="col-md-4">
+        <ul>ユーザー名
+          <li><%= @user.name %></li>
+        </ul>
+        <ul>自己紹介文
+          <li><%= @user.info %></li>
+        </ul>
+      </div>
+      <div class="col-md-3">
+        <ul>
+          <button type="button" class="btn btn-success">お気に入り記事一覧</button>
+        </ul>
+        <ul>
+      	<% if @user.id == current_user.id %>
+          <%= link_to "ユーザー情報編集", edit_user_path(@user), class:"btn-primary btn-lg" %>
+        <% end %>
+        </ul>
+      </div>
+      <div class="col-md-1"></div>
+    </div>
+  </div>
+</div>
