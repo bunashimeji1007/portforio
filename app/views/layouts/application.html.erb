@@ -10,6 +10,26 @@
   </head>
 
   <body>
-    <%= yield %>
+      <nav class="navbar fixed-top navbar-dark bg-dark">
+        <div class="float-right">
+          <%= link_to "トップ", posts_path %>
+        </div>
+
+        <form class="form-inline">
+          <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+
+        <div class="float-right">
+        <% if user_signed_in? %>
+          <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+          <%= link_to '投稿フォーム', new_post_path %>
+        <% else %>
+          <%= link_to "新規登録", new_user_registration_path %>
+          <%= link_to "ログイン", new_user_session_path %>
+        <% end %>
+        </div>
+      </nav>
+      <%= yield %>
   </body>
 </html>

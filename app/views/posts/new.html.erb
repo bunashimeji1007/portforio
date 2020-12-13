@@ -1,0 +1,26 @@
+<div class=container>
+  <div class="row">
+  	<div class="col-auto">
+  	  <div class="form-user">
+  	  	<div class="form-header">
+  	  	  <h4 class="form-header-title">投稿フォーム</h4>
+  	  	</div>
+          <div class="form-body">
+          <%= form_for(@post, url: posts_path) do |f| %>
+            <%= render 'layouts/error_messages', model: f.object %>
+            <div class="form-field">
+              <%= f.attachment_field :image %>
+            </div>
+            <div class="form-field">
+              <%= f.text_field :title, placeholder:"タイトル（５０文字以内）", size: "50" %>
+            </div>
+            <div class="form-field">
+              <%= f.text_area :text,  placeholder:"本文（２００文字以内）", size: "50" %>
+            </div>
+            <%= f.submit '投稿', class:"btn-primary btn-lg btn-block" %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
