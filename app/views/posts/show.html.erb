@@ -5,3 +5,22 @@
 <% if @post.user == current_user %>
   <%= link_to "削除", post_path(@post), method: :delete %>
 <% end %>
+
+
+<%= @post.comments.count %>コメント
+
+<%= form_for [@post, @comment] do |f| %>
+  <%= f.text_area :comment, rows:'5', placeholder: "コメントをここに" %>
+  <%= f.submit "送信する" %>
+<% end %>
+
+<ol>
+  <% @post.comments.each do |comment| %>
+    <%= comment.user.name %>
+    <%= comment.comment %>
+    <%= comment.created_at %>
+  <% end %>
+</ol>
+<% if @comment.user == current_user %>
+  <%= link_to "削除", post_comment_path(@comment.post, @comment), method: :delete %>
+<% end %>
