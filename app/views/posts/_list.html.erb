@@ -1,4 +1,4 @@
-<div class=container>
+<div class="container">
   <% posts.each do |post| %>
   <div class="user-post">
     <div class="post-title">
@@ -6,16 +6,18 @@
     </div>
     <div class="post-image">
       <%= link_to post_path(post.id) do %>
-        <%= attachment_image_tag post, :image %>
+        <%= attachment_image_tag post, :image, :fill, 485, 300 %>
       <% end %>
     </div>
     <div class="post-info d-flex flex-row bd-highlight">
       <div class="p-2 bd-highlight">
+          <%= attachment_image_tag post.user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg", class: "rounded-circle border" %>
       </div>
-      <div class="p-2 bd-highlight">
+      <div class="p-2 bd-highlight post-text">
         <%= post.text %>
       </div>
     </div>
   </div>
   <% end %>
 </div>
+<%= paginate @posts %>
