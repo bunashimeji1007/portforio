@@ -1,0 +1,33 @@
+<div class="container">
+  <div class="row">
+    <div class="col-auto">
+      <div class="form-user"><!-- ユーザー登録フォームの塊-->
+        <div class="form-heder">
+          <h4 class="form-header-title">ユーザー登録</h4>
+        </div>
+        <div class="form-body">
+          <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+            <%= render "devise/shared/error_messages", resource: resource %>
+            <div class="form-field">
+              <%= f.text_field :name, autofocus: true, autocomplete:"name", placeholder:"名前", size: "50" %>
+            </div>
+            <div class="form-field">
+              <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder:"メールアドレス", size: "50" %>
+            </div>
+            <div class="form-field">
+              <%= f.password_field :password, autocomplete: "new-password", placeholder:"パスワード（6文字以上）", size: "50" %>
+            </div>
+            <div class="form-field">
+              <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder:"パスワード確認", size: "50" %>
+            </div>
+            <div class="sign-up">
+              <%= f.submit "登録する", class:"btn-primary btn-lg btn-block" %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%= render "devise/shared/links" %>

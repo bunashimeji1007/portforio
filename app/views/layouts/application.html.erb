@@ -7,9 +7,37 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
+    <!-- Bootstrap用CSSの読み込み -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <!-- Bootstrap用JavaScriptの読み込み -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
   </head>
 
   <body>
-    <%= yield %>
+      <nav class="navbar fixed-top navbar-dark bg-dark">
+        <div class="float-right">
+          <%= link_to "トップ", posts_path %>
+        </div>
+
+        <form class="form-inline">
+          <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+
+        <div class="float-right">
+        <% if user_signed_in? %>
+          <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+          <%= link_to '投稿フォーム', new_post_path %>
+          <%= link_to 'マイページ', user_path(current_user.id) %>
+        <% else %>
+          <%= link_to "新規登録", new_user_registration_path %>
+          <%= link_to "ログイン", new_user_session_path %>
+        <% end %>
+        </div>
+      </nav>
+      <%= yield %>
   </body>
 </html>
